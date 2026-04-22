@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/layout/Navbar.jsx'
 import Footer from './components/layout/Footer.jsx'
 import ContactModal from './components/modals/ContactModal.jsx'
+import ConsentBanner from './components/ConsentBanner.jsx'
 
 const Home           = lazy(() => import('./pages/Home.jsx'))
 const Planes         = lazy(() => import('./pages/Planes.jsx'))
@@ -75,6 +76,7 @@ export default function App() {
         </Suspense>
         <Footer />
         <ContactModal />
+        <ConsentBanner />
       </BrowserRouter>
     </ModalContext.Provider>
   )

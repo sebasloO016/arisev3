@@ -50,6 +50,14 @@ export default function ContactModal() {
     ].filter(Boolean).join('\n')
 
     window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank')
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion_contact', {
+        event_category: 'lead',
+        event_label: data.plan,
+        value: 1,
+        transport_type: 'beacon',
+      })
+    }
     setSent(true)
   }
 

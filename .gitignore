@@ -25,3 +25,6 @@ Thumbs.db
 public/Multimedia/
 public/projects/
 public/videos/
+
+# Local Netlify folder
+.netlify

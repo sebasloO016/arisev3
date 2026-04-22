@@ -46,6 +46,14 @@ function ContactForm() {
 
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`
     window.open(url, '_blank')
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion_contact', {
+        event_category: 'lead',
+        event_label: data.plan,
+        value: 1,
+        transport_type: 'beacon',
+      })
+    }
     setSent(true)
   }
 
@@ -250,6 +258,7 @@ export default function Contacto() {
 
               {/* WhatsApp direct link */}
               <a href={`https://wa.me/${WA_NUMBER}`} target="_blank" rel="noopener noreferrer"
+                onClick={() => typeof window.gtag === 'function' && window.gtag('event', 'whatsapp_direct_click', { event_category: 'lead', value: 1, transport_type: 'beacon' })}
                 className="flex items-center gap-3 px-5 py-4 rounded-2xl font-dm font-semibold text-sm text-white transition-all"
                 style={{ background: '#25D366', boxShadow: '0 0 20px rgba(37,211,102,0.2)' }}>
                 <svg width="18" height="18" fill="white" viewBox="0 0 24 24">

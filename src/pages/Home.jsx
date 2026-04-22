@@ -236,13 +236,13 @@ function VideoShowcase() {
   const mobileRef = useRef(null)
 
   const slides = [
-    { src: '/videos/vid1 (1).mp4', label: 'Mecánico', headline: 'Tu taller, visible las 24 horas.', sub: 'Tus clientes te encuentran cuando te necesitan.' },
-    { src: '/videos/vid1 (2).mp4', label: 'Abogado', headline: 'Presencia profesional que genera confianza.', sub: 'Casos ganados empiezan con una buena primera impresión.' },
-    { src: '/videos/vid1 (3).mp4', label: 'Restaurante', headline: 'Llena mesas antes de que abras la puerta.', sub: 'Tu menú, reservas y reseñas al alcance de un clic.' },
-    { src: '/videos/vid1 (4).mp4', label: 'Flores', headline: 'Vende ramos antes del mediodía.', sub: 'Pedidos desde el celular, entregas a tiempo.' },
-    { src: '/videos/vid1 (5).mp4', label: 'Negocio', headline: 'Tu negocio, siempre abierto.', sub: 'Clientes nuevos cada día, sin esfuerzo extra.' },
-    { src: '/videos/vid1 (6).mp4', label: 'Servicio', headline: 'El servicio que mereces, la web que necesitas.', sub: 'Diseño profesional desde $7.99 al mes.' },
-    { src: '/videos/vid1 (7).mp4', label: 'Empresa', headline: 'Crece con una presencia digital real.', sub: 'Sin pago inicial. Sin permanencia.' },
+    { src: '/videos/vid1.mp4', label: 'Mecánico', headline: 'Tu taller, visible las 24 horas.', sub: 'Tus clientes te encuentran cuando te necesitan.' },
+    { src: '/videos/vid2.mp4', label: 'Abogado', headline: 'Presencia profesional que genera confianza.', sub: 'Casos ganados empiezan con una buena primera impresión.' },
+    { src: '/videos/vid3.mp4', label: 'Restaurante', headline: 'Llena mesas antes de que abras la puerta.', sub: 'Tu menú, reservas y reseñas al alcance de un clic.' },
+    { src: '/videos/vid4.mp4', label: 'Flores', headline: 'Vende ramos antes del mediodía.', sub: 'Pedidos desde el celular, entregas a tiempo.' },
+    { src: '/videos/vid5.mp4', label: 'Negocio', headline: 'Tu negocio, siempre abierto.', sub: 'Clientes nuevos cada día, sin esfuerzo extra.' },
+    { src: '/videos/vid6.mp4', label: 'Servicio', headline: 'El servicio que mereces, la web que necesitas.', sub: 'Diseño profesional desde $7.99 al mes.' },
+    { src: '/videos/vid7.mp4', label: 'Empresa', headline: 'Crece con una presencia digital real.', sub: 'Sin pago inicial. Sin permanencia.' },
   ]
 
   // Detect mobile once
