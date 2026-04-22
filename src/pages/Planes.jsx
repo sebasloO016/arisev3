@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
-import { Check, X, ChevronDown, ArrowUpRight, Zap, Star, Building2, Code2, Handshake, Globe, HelpCircle } from 'lucide-react'
+import { Check, X, ChevronDown, ArrowUpRight, Zap, Star, Building2, Code2, Handshake, Globe, HelpCircle, TrendingUp, MousePointerClick } from 'lucide-react'
 import { useModal } from '../App.jsx'
 
 /* ── helpers ── */
@@ -590,6 +590,113 @@ export default function Planes() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ── ADICIONALES ── */}
+      <section className="py-20 px-5 sm:px-8" style={{ background: 'var(--bg-base)' }}>
+        <div className="max-w-4xl mx-auto">
+          <Reveal className="text-center mb-12">
+            <p className="text-xs font-dm font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--accent)' }}>Servicios adicionales</p>
+            <h2 className="font-syne font-bold text-3xl mb-3" style={{ color: 'var(--text-primary)' }}>
+              Potencia tu plan
+            </h2>
+            <p className="font-dm" style={{ color: 'var(--text-secondary)' }}>
+              Súmalos a cualquier plan. Sin contrato adicional.
+            </p>
+          </Reveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+            {/* Google Ads */}
+            <Reveal delay={0.1}>
+              <div className="rounded-2xl p-6 h-full flex flex-col"
+                style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 flex-shrink-0"
+                  style={{ background: 'rgba(255,92,26,0.12)', border: '1px solid rgba(255,92,26,0.2)' }}>
+                  <TrendingUp size={20} style={{ color: 'var(--accent)' }} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <h3 className="font-syne font-bold text-lg" style={{ color: 'var(--text-primary)' }}>
+                      Gestión de Google Ads
+                    </h3>
+                    <div className="text-right flex-shrink-0">
+                      <span className="font-syne font-bold text-2xl" style={{ color: 'var(--accent)' }}>$25</span>
+                      <span className="font-dm text-xs block" style={{ color: 'var(--text-muted)' }}>/mes</span>
+                    </div>
+                  </div>
+                  <p className="font-dm text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                    Aparece en los primeros resultados de Google cuando alguien busca tu servicio. Nosotros creamos, optimizamos y monitoreamos la campaña cada semana.
+                  </p>
+                  <ul className="space-y-2 mb-5">
+                    {['Investigación de palabras clave', 'Creación y diseño de anuncios', 'Optimización semanal', 'Reporte mensual de resultados'].map(item => (
+                      <li key={item} className="flex items-center gap-2 font-dm text-sm" style={{ color: 'var(--text-secondary)' }}>
+                        <Check size={13} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="font-dm text-xs px-3 py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.04)', color: 'var(--text-muted)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    💡 El presupuesto de inversión en Google lo pagas tú directo a Google — recomendamos mínimo $30–50/mes para ver resultados.
+                  </p>
+                </div>
+                <motion.button
+                  onClick={() => setOpen(true)}
+                  whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
+                  className="mt-5 w-full py-3 rounded-xl font-dm font-semibold text-sm text-white flex items-center justify-center gap-2"
+                  style={{ background: 'var(--accent)', boxShadow: '0 0 20px rgba(255,92,26,0.25)', cursor: 'pointer' }}>
+                  Quiero este adicional <ArrowUpRight size={14} />
+                </motion.button>
+              </div>
+            </Reveal>
+
+            {/* Pixel instalación */}
+            <Reveal delay={0.2}>
+              <div className="rounded-2xl p-6 h-full flex flex-col"
+                style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 flex-shrink-0"
+                  style={{ background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.2)' }}>
+                  <MousePointerClick size={20} style={{ color: '#A78BFA' }} />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <h3 className="font-syne font-bold text-lg" style={{ color: 'var(--text-primary)' }}>
+                      Instalación de Píxel
+                    </h3>
+                    <div className="text-right flex-shrink-0">
+                      <span className="font-syne font-bold text-2xl" style={{ color: '#A78BFA' }}>$10</span>
+                      <span className="font-dm text-xs block" style={{ color: 'var(--text-muted)' }}>pago único</span>
+                    </div>
+                  </div>
+                  <p className="font-dm text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>
+                    Instalamos el píxel de seguimiento de Meta (Facebook & Instagram) o TikTok en tu web para que puedas correr anuncios que le aparezcan exactamente a tus clientes ideales.
+                  </p>
+                  <ul className="space-y-2 mb-5">
+                    {['Píxel de Meta (Facebook & Instagram)', 'Píxel de TikTok', 'Verificación de que funciona correctamente', 'Listo para correr anuncios desde el día 1'].map(item => (
+                      <li key={item} className="flex items-center gap-2 font-dm text-sm" style={{ color: 'var(--text-secondary)' }}>
+                        <Check size={13} style={{ color: '#A78BFA', flexShrink: 0 }} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="font-dm text-xs px-3 py-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.04)', color: 'var(--text-muted)', border: '1px solid rgba(255,255,255,0.06)' }}>
+                    💡 Necesitas una cuenta de Meta Ads o TikTok Ads activa para aprovechar el píxel.
+                  </p>
+                </div>
+                <motion.button
+                  onClick={() => setOpen(true)}
+                  whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}
+                  className="mt-5 w-full py-3 rounded-xl font-dm font-semibold text-sm flex items-center justify-center gap-2 transition-all"
+                  style={{ border: '1px solid rgba(167,139,250,0.3)', color: '#A78BFA', cursor: 'pointer' }}
+                  onMouseEnter={e => e.currentTarget.style.background = 'rgba(167,139,250,0.08)'}
+                  onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                  Quiero este adicional <ArrowUpRight size={14} />
+                </motion.button>
+              </div>
+            </Reveal>
+
+          </div>
         </div>
       </section>
 
