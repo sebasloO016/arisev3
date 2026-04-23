@@ -30,8 +30,8 @@ function BigNumber({ n, label }) {
   )
 }
 
-/* ── Team card with cinematic hover ── */
-function TeamCard({ name, role, bio, initials, color, skills, delay = 0 }) {
+/* ── Team card with photo ── */
+function TeamCard({ name, role, bio, photo, initials, color, skills, delay = 0 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
   return (
@@ -40,38 +40,43 @@ function TeamCard({ name, role, bio, initials, color, skills, delay = 0 }) {
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay }}
       whileHover={{ y: -6 }}
       className="relative rounded-2xl overflow-hidden group"
-      style={{ background: 'var(--bg-elevated)', border: '1px solid rgba(255,255,255,0.07)' }}>
+      style={{ background: 'var(--bg-elevated)', border: `1px solid ${color}22` }}>
 
-      {/* Animated top border on hover */}
-      <div className="absolute top-0 left-0 right-0 h-0.5 transition-all duration-500"
-        style={{ background: `linear-gradient(90deg, transparent, ${color}, transparent)`, opacity: 0.4 }} />
-      <motion.div className="absolute top-0 left-0 h-0.5 rounded-full"
-        style={{ background: color }}
+      {/* Animated accent line on hover */}
+      <motion.div className="absolute top-0 left-0 h-0.5 z-20 rounded-full"
+        style={{ background: `linear-gradient(90deg, ${color}, ${color}88)` }}
         initial={{ width: '0%' }}
         whileHover={{ width: '100%' }}
-        transition={{ duration: 0.4 }} />
+        transition={{ duration: 0.45 }} />
 
-      {/* Ambient glow on hover */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl"
-        style={{ background: `radial-gradient(ellipse at 50% 0%, ${color}15 0%, transparent 60%)` }} />
-
-      <div className="relative z-10 p-7">
-        {/* Avatar */}
-        <div className="flex items-start justify-between mb-5">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="w-16 h-16 rounded-2xl flex items-center justify-center font-syne font-bold text-xl text-white flex-shrink-0"
-            style={{ background: `linear-gradient(135deg, ${color}88, ${color}cc)`, border: `1px solid ${color}44` }}>
+      {/* Photo */}
+      <div className="relative h-64 overflow-hidden">
+        {photo ? (
+          <motion.img
+            src={photo} alt={name}
+            className="w-full h-full object-cover object-top"
+            whileHover={{ scale: 1.04 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center font-syne font-bold text-4xl text-white"
+            style={{ background: `linear-gradient(135deg, ${color}55, ${color}99)` }}>
             {initials}
-          </motion.div>
-        </div>
+          </div>
+        )}
+        {/* Gradient fade into card */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, var(--bg-elevated) 0%, transparent 100%)' }} />
+        {/* Ambient color tint on hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{ background: `linear-gradient(to bottom, ${color}18 0%, transparent 60%)` }} />
+      </div>
 
-        {/* Info */}
-        <h3 className="font-syne font-bold text-xl mb-1" style={{ color: 'var(--text-primary)' }}>{name}</h3>
+      {/* Info */}
+      <div className="relative z-10 px-6 pb-6 -mt-2">
+        <h3 className="font-syne font-bold text-xl mb-0.5" style={{ color: 'var(--text-primary)' }}>{name}</h3>
         <p className="font-dm text-xs font-semibold uppercase tracking-widest mb-3" style={{ color }}>{role}</p>
-        <p className="font-dm text-sm leading-relaxed mb-5" style={{ color: 'var(--text-secondary)' }}>{bio}</p>
-
-        {/* Skills */}
+        <p className="font-dm text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>{bio}</p>
         <div className="flex flex-wrap gap-2">
           {skills.map(s => (
             <span key={s} className="text-xs font-dm px-2.5 py-1 rounded-lg"
@@ -203,6 +208,7 @@ export default function Nosotros() {
               name="Sebastián Gavilanes"
               role="Fundador · Desarrollo & Diseño"
               bio="Ingeniero en sistemas apasionado por crear experiencias digitales que no parecen hechas por máquinas. Experto en uso de IA aplicada al desarrollo real — no para reemplazar el criterio humano, sino para amplificarlo. Si puedes imaginarlo, probablemente puede construirlo."
+              photo="/Fotos/sebastiangavilanes.jpg"
               initials="SG"
               color="#FF5C1A"
               skills={['React', 'Next.js', 'Node.js', 'IA Tools', 'UI/UX', 'Three.js']}
@@ -212,6 +218,7 @@ export default function Nosotros() {
               name="Ricardo Amores"
               role="Co-fundador · Mantenimiento & Soporte"
               bio="Ingeniero en sistemas especializado en mantener todo funcionando sin que el cliente tenga que preocuparse. El que responde el WhatsApp cuando algo necesita atención. Garantiza que tu página esté siempre actualizada, rápida y sin sorpresas."
+              photo="/Fotos/ricardoamo.jpg"
               initials="RA"
               color="#60A5FA"
               skills={['Node.js', 'PHP', 'Laravel', 'PostgreSQL', 'Soporte técnico']}
