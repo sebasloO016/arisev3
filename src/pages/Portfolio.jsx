@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
 import { X, ArrowUpRight, ExternalLink, Github, ChevronLeft, ChevronRight, Play, MessageCircle } from 'lucide-react'
@@ -661,6 +661,19 @@ function DetailModal({ p, onClose }) {
   )
 }
 
+/* ── Video thumbnail — muestra el primer frame del video ── */
+function VideoThumb({ src, className, style }) {
+  const ref = useRef(null)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const onMeta = () => { el.currentTime = 0.1 }
+    el.addEventListener('loadedmetadata', onMeta)
+    return () => el.removeEventListener('loadedmetadata', onMeta)
+  }, [src])
+  return <video ref={ref} src={src} preload="metadata" muted playsInline className={className} style={style} />
+}
+
 /* ── Project card ── */
 function ProjectCard({ p, onClick }) {
   const hasImage = p.images && p.images.length > 0
@@ -680,6 +693,11 @@ function ProjectCard({ p, onClick }) {
           <img
             src={p.images[0]}
             alt={p.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : p.video && !p.video.includes('youtube') ? (
+          <VideoThumb
+            src={p.video}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
