@@ -30,7 +30,7 @@ function BigNumber({ n, label }) {
   )
 }
 
-/* ── Team card with photo ── */
+/* ── Team card with circular photo ── */
 function TeamCard({ name, role, bio, photo, initials, color, skills, delay = 0 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
@@ -42,42 +42,45 @@ function TeamCard({ name, role, bio, photo, initials, color, skills, delay = 0 }
       className="relative rounded-2xl overflow-hidden group"
       style={{ background: 'var(--bg-elevated)', border: `1px solid ${color}22` }}>
 
-      {/* Animated accent line on hover */}
-      <motion.div className="absolute top-0 left-0 h-0.5 z-20 rounded-full"
-        style={{ background: `linear-gradient(90deg, ${color}, ${color}88)` }}
-        initial={{ width: '0%' }}
-        whileHover={{ width: '100%' }}
-        transition={{ duration: 0.45 }} />
+      {/* Ambient glow background */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+        style={{ background: `radial-gradient(ellipse at 50% 0%, ${color}12 0%, transparent 65%)` }} />
 
-      {/* Photo */}
-      <div className="relative h-64 overflow-hidden">
-        {photo ? (
-          <motion.img
-            src={photo} alt={name}
-            className="w-full h-full object-cover object-top"
+      <div className="relative z-10 p-7 flex flex-col items-center text-center">
+
+        {/* Circular photo */}
+        <div className="relative mb-5">
+          {/* Outer glow ring */}
+          <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{ boxShadow: `0 0 0 3px ${color}55, 0 0 24px ${color}40` }} />
+          {/* Static ring */}
+          <div className="absolute inset-0 rounded-full"
+            style={{ boxShadow: `0 0 0 2px ${color}33` }} />
+          <motion.div
             whileHover={{ scale: 1.04 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center font-syne font-bold text-4xl text-white"
-            style={{ background: `linear-gradient(135deg, ${color}55, ${color}99)` }}>
-            {initials}
-          </div>
-        )}
-        {/* Gradient fade into card */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, var(--bg-elevated) 0%, transparent 100%)' }} />
-        {/* Ambient color tint on hover */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{ background: `linear-gradient(to bottom, ${color}18 0%, transparent 60%)` }} />
-      </div>
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="w-32 h-32 rounded-full overflow-hidden">
+            {photo ? (
+              <img src={photo} alt={name} className="w-full h-full object-cover object-center" />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center font-syne font-bold text-3xl text-white"
+                style={{ background: `linear-gradient(135deg, ${color}88, ${color}cc)` }}>
+                {initials}
+              </div>
+            )}
+          </motion.div>
+          {/* Accent dot */}
+          <div className="absolute bottom-1 right-1 w-4 h-4 rounded-full border-2"
+            style={{ background: color, borderColor: 'var(--bg-elevated)' }} />
+        </div>
 
-      {/* Info */}
-      <div className="relative z-10 px-6 pb-6 -mt-2">
+        {/* Info */}
         <h3 className="font-syne font-bold text-xl mb-0.5" style={{ color: 'var(--text-primary)' }}>{name}</h3>
-        <p className="font-dm text-xs font-semibold uppercase tracking-widest mb-3" style={{ color }}>{role}</p>
-        <p className="font-dm text-sm leading-relaxed mb-4" style={{ color: 'var(--text-secondary)' }}>{bio}</p>
-        <div className="flex flex-wrap gap-2">
+        <p className="font-dm text-xs font-semibold uppercase tracking-widest mb-4" style={{ color }}>{role}</p>
+        <p className="font-dm text-sm leading-relaxed mb-5 max-w-xs" style={{ color: 'var(--text-secondary)' }}>{bio}</p>
+
+        {/* Skills */}
+        <div className="flex flex-wrap gap-2 justify-center">
           {skills.map(s => (
             <span key={s} className="text-xs font-dm px-2.5 py-1 rounded-lg"
               style={{ background: `${color}12`, color, border: `1px solid ${color}25` }}>
