@@ -689,15 +689,15 @@ function ProjectCard({ p, onClick }) {
 
       {/* Thumbnail — real image if available, else mock visual */}
       <div className="h-40 relative overflow-hidden" style={{ background: p.color }}>
-        {hasImage ? (
+        {p.video && !p.video.includes('youtube') ? (
+          <VideoThumb
+            src={p.video}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : hasImage ? (
           <img
             src={p.images[0]}
             alt={p.title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : p.video && !p.video.includes('youtube') ? (
-          <VideoThumb
-            src={p.video}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
