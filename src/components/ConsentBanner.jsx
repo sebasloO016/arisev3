@@ -12,6 +12,9 @@ function grantConsent() {
       ad_personalization: 'granted',
     })
   }
+  if (typeof window.fbq === 'function') {
+    window.fbq('consent', 'grant')
+  }
 }
 
 function denyConsent() {

@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Helmet } from 'react-helmet-async'
-import { ArrowUpRight, Github, ExternalLink } from 'lucide-react'
+import { ArrowUpRight, ExternalLink } from 'lucide-react'
 import { useModal } from '../App.jsx'
 
 function Reveal({ children, delay = 0, className = '' }) {
@@ -31,7 +31,7 @@ function BigNumber({ n, label }) {
 }
 
 /* ── Team card with cinematic hover ── */
-function TeamCard({ name, role, bio, github, initials, color, skills, delay = 0 }) {
+function TeamCard({ name, role, bio, initials, color, skills, delay = 0 }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
   return (
@@ -64,15 +64,6 @@ function TeamCard({ name, role, bio, github, initials, color, skills, delay = 0 
             style={{ background: `linear-gradient(135deg, ${color}88, ${color}cc)`, border: `1px solid ${color}44` }}>
             {initials}
           </motion.div>
-          {github && (
-            <a href={github} target="_blank" rel="noopener noreferrer"
-              className="p-2 rounded-lg transition-all"
-              style={{ border: '1px solid rgba(255,255,255,0.08)', color: 'var(--text-muted)' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = `${color}55`; e.currentTarget.style.color = color }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = 'var(--text-muted)' }}>
-              <Github size={16} />
-            </a>
-          )}
         </div>
 
         {/* Info */}
@@ -214,7 +205,6 @@ export default function Nosotros() {
               bio="Ingeniero en sistemas apasionado por crear experiencias digitales que no parecen hechas por máquinas. Experto en uso de IA aplicada al desarrollo real — no para reemplazar el criterio humano, sino para amplificarlo. Si puedes imaginarlo, probablemente puede construirlo."
               initials="SG"
               color="#FF5C1A"
-              github="https://github.com/sebasloO016"
               skills={['React', 'Next.js', 'Node.js', 'IA Tools', 'UI/UX', 'Three.js']}
             />
             <TeamCard
@@ -224,7 +214,6 @@ export default function Nosotros() {
               bio="Ingeniero en sistemas especializado en mantener todo funcionando sin que el cliente tenga que preocuparse. El que responde el WhatsApp cuando algo necesita atención. Garantiza que tu página esté siempre actualizada, rápida y sin sorpresas."
               initials="RA"
               color="#60A5FA"
-              github={null}
               skills={['Node.js', 'PHP', 'Laravel', 'PostgreSQL', 'Soporte técnico']}
             />
           </div>

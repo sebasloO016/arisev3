@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Send, CheckCircle, ChevronDown, Mail, Phone, MapPin, Clock, Instagram, Linkedin } from 'lucide-react'
+import { Send, CheckCircle, ChevronDown, Mail, Phone, MapPin, Clock, Instagram, Facebook } from 'lucide-react'
 
 function Reveal({ children, delay = 0, className = '' }) {
   const ref = useRef(null)
@@ -245,8 +245,11 @@ export default function Contacto() {
               </div>
 
               <div className="flex gap-3">
-                {[Instagram, Linkedin].map((Icon, i) => (
-                  <a key={i} href="#"
+                {[
+                  { Icon: Instagram, href: 'https://www.instagram.com/arise.code/' },
+                  { Icon: Facebook,  href: 'https://www.facebook.com/profile.php?id=61561274425647' },
+                ].map(({ Icon, href }) => (
+                  <a key={href} href={href} target="_blank" rel="noopener noreferrer"
                     className="w-9 h-9 flex items-center justify-center rounded-lg transition-all"
                     style={{ border: '1px solid rgba(255,255,255,0.08)', color: 'var(--text-muted)' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,92,26,0.3)'; e.currentTarget.style.color = 'var(--accent)' }}
