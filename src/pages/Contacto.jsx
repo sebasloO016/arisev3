@@ -230,7 +230,6 @@ export default function Contacto() {
                 {[
                   { Icon: Phone, text: '+593 988 515 225', href: `https://wa.me/${WA_NUMBER}` },
                   { Icon: Mail, text: 'esgavilanes@arisecode.dev', href: 'mailto:esgavilanes@arisecode.dev' },
-                  { Icon: Mail, text: 'raamores@arisecode.dev', href: 'mailto:raamores@arisecode.dev' },
                   { Icon: MapPin, text: 'Ambato, Ecuador 🇪🇨', href: '#' },
                   { Icon: Clock, text: 'Lun–Vie 9:00–18:00', href: '#' },
                 ].map(({ Icon, text, href }) => (

@@ -51,7 +51,6 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { Icon: Mail,  text: 'esgavilanes@arisecode.dev', href: 'mailto:esgavilanes@arisecode.dev' },
-                { Icon: Mail,  text: 'raamores@arisecode.dev',    href: 'mailto:raamores@arisecode.dev' },
                 { Icon: Phone, text: '+593 988 515 225',           href: 'https://wa.me/593988515225' },
               ].map(({ Icon, text, href }) => (
                 <li key={text}>
