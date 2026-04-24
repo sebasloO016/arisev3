@@ -291,6 +291,85 @@ const projects = [
     video: '/projects/diablada/demo.mp4',
   },
   {
+    id: 13,
+    title: 'Restaurante & Reservas — Web Gastronómica',
+    category: 'mvp',
+    stack: ['React', 'Tailwind', 'Vite'],
+    description: 'MVP de sitio web para restaurantes con menú digital por categorías, sistema de reservas en línea con fecha y hora, galería de platos y sección de reseñas. Diseño cálido que transmite la experiencia del local.',
+    challenge: 'Los restaurantes dependen de llamadas o redes sociales para recibir reservas. Sin sistema propio, pierden mesas y clientes cuando el algoritmo falla.',
+    solution: 'Web con menú visual interactivo, formulario de reservas, galería de ambiente y platos, y sección de testimonios. Lista para adaptar con la carta y datos reales del local.',
+    results: ['Menú digital', 'Reservas en línea', 'Diseño apetitoso'],
+    color: '#1A0E00',
+    accent: '#F59E0B',
+    link: null,
+    github: null,
+    featured: false,
+    images: [
+      '/projects/Menu/cap1.png',
+      '/projects/Menu/cap2.png',
+      '/projects/Menu/cap3.png',
+      '/projects/Menu/cap4.png',
+      '/projects/Menu/cap5.png',
+      '/projects/Menu/cap6.png',
+    ],
+    video: '/projects/Menu/demo.mp4',
+  },
+  {
+    id: 14,
+    title: 'Consultorio Dental — Web Profesional',
+    category: 'mvp',
+    stack: ['React', 'Tailwind', 'Vite'],
+    description: 'Sitio web informativo para consultorio dental con presentación de servicios, galería del consultorio, sección de preguntas frecuentes y sistema de agendamiento de citas en línea.',
+    challenge: 'La mayoría de consultorios dentales no tienen presencia digital. Los pacientes buscan en Google y no los encuentran — o encuentran a la competencia.',
+    solution: 'Web profesional con servicios detallados, galería de instalaciones, testimonios de pacientes y formulario de cita previa. Genera confianza antes de la primera visita.',
+    results: ['Agenda en línea', 'Servicios claros', 'Genera confianza'],
+    color: '#001A1A',
+    accent: '#2DD4BF',
+    link: null,
+    github: null,
+    featured: false,
+    images: [
+      '/projects/dentista/cap1.png',
+      '/projects/dentista/cap2.png',
+      '/projects/dentista/cap3.png',
+      '/projects/dentista/cap4.png',
+      '/projects/dentista/cap5.png',
+      '/projects/dentista/cap6.png',
+      '/projects/dentista/cap7.png',
+    ],
+    video: '/projects/dentista/demo.mp4',
+  },
+  {
+    id: 15,
+    title: 'Tienda de Ropa — E-commerce MVP',
+    category: 'mvp',
+    stack: ['React', 'Tailwind', 'Vite'],
+    description: 'E-commerce completo para tienda de ropa con catálogo por categorías, filtros por talla y color, fichas de producto detalladas, carrito de compras y proceso de checkout. Diseño moderno enfocado en conversión.',
+    challenge: 'Las tiendas de ropa dependen de Instagram y WhatsApp para vender — sin tienda propia pierden ventas cada vez que el algoritmo cambia o la cuenta tiene problemas.',
+    solution: 'E-commerce visual con catálogo, página de producto, selector de talla y color, carrito y checkout completo. MVP listo para conectar con una pasarela de pagos real.',
+    results: ['Catálogo completo', 'Carrito y checkout', 'Independiente de redes'],
+    color: '#1A001A',
+    accent: '#E879F9',
+    link: null,
+    github: null,
+    featured: false,
+    images: [
+      '/projects/Tienda/cap1.png',
+      '/projects/Tienda/cap2.png',
+      '/projects/Tienda/cap3.png',
+      '/projects/Tienda/cap4.png',
+      '/projects/Tienda/cap5.png',
+      '/projects/Tienda/cap6.png',
+      '/projects/Tienda/cap7.png',
+      '/projects/Tienda/cap8.png',
+      '/projects/Tienda/cap9.png',
+      '/projects/Tienda/cap10.png',
+      '/projects/Tienda/cap11.png',
+      '/projects/Tienda/cap12.png',
+    ],
+    video: '/projects/Tienda/demo.mp4',
+  },
+  {
     id: 8,
     title: 'SaaS para Ingenieros Civiles',
     category: 'en-desarrollo',
@@ -661,17 +740,31 @@ function DetailModal({ p, onClose }) {
   )
 }
 
-/* ── Video thumbnail — muestra el primer frame del video ── */
+/* ── Video thumbnail — carga lazy cuando entra al viewport ── */
 function VideoThumb({ src, className, style }) {
   const ref = useRef(null)
+  const [activeSrc, setActiveSrc] = useState(null)
+
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setActiveSrc(src); observer.disconnect() } },
+      { rootMargin: '120px' }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [src])
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el || !activeSrc) return
     const onMeta = () => { el.currentTime = 0.1 }
     el.addEventListener('loadedmetadata', onMeta)
     return () => el.removeEventListener('loadedmetadata', onMeta)
-  }, [src])
-  return <video ref={ref} src={src} preload="metadata" muted playsInline className={className} style={style} />
+  }, [activeSrc])
+
+  return <video ref={ref} src={activeSrc || undefined} preload={activeSrc ? 'metadata' : 'none'} muted playsInline className={className} style={style} />
 }
 
 /* ── Project card ── */
