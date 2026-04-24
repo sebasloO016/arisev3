@@ -185,7 +185,7 @@ const projects = [
   {
     id: 9,
     title: 'Tienda de Vinos — E-commerce MVP',
-    category: 'mvp',
+    category: 'web',
     stack: ['React', 'Tailwind', 'Vite'],
     description: 'E-commerce especializado para la venta de vinos. Catálogo con filtros por varietal, región y precio, fichas de producto detalladas, carrito y checkout. Diseño premium que transmite exclusividad.',
     challenge: 'El cliente necesitaba validar su propuesta de venta online de vinos antes de invertir en infraestructura de pagos y logística.',
@@ -216,7 +216,7 @@ const projects = [
   {
     id: 10,
     title: 'FitTrack — App de Gestión Deportiva',
-    category: 'mvp',
+    category: 'web',
     stack: ['React', 'Tailwind', 'Vite'],
     description: 'Plataforma web para la gestión de actividades deportivas. Diseño adaptable a gimnasios, torneos de tenis o planes de entrenamiento personalizados. Seguimiento de rutinas, progreso y estadísticas.',
     challenge: 'Los entrenadores y organizadores deportivos necesitan una herramienta centralizada que reemplace las planillas y el chat de WhatsApp para coordinar clientes y sesiones.',
@@ -241,7 +241,7 @@ const projects = [
   {
     id: 11,
     title: 'StreamLearn — Plataforma de Recursos Internos',
-    category: 'mvp',
+    category: 'web',
     stack: ['React', 'Tailwind', 'Vite'],
     description: 'Plataforma de streaming interna para organizaciones. Los empleados acceden a cursos, capacitaciones y recursos corporativos en un entorno privado. Ideal para onboarding, formación continua y gestión del conocimiento.',
     challenge: 'Las empresas comparten capacitaciones por email o carpetas de Drive sin ningún control de acceso ni seguimiento del progreso.',
@@ -293,7 +293,7 @@ const projects = [
   {
     id: 13,
     title: 'Restaurante & Reservas — Web Gastronómica',
-    category: 'mvp',
+    category: 'web',
     stack: ['React', 'Tailwind', 'Vite'],
     description: 'MVP de sitio web para restaurantes con menú digital por categorías, sistema de reservas en línea con fecha y hora, galería de platos y sección de reseñas. Diseño cálido que transmite la experiencia del local.',
     challenge: 'Los restaurantes dependen de llamadas o redes sociales para recibir reservas. Sin sistema propio, pierden mesas y clientes cuando el algoritmo falla.',
@@ -317,7 +317,7 @@ const projects = [
   {
     id: 14,
     title: 'Consultorio Dental — Web Profesional',
-    category: 'mvp',
+    category: 'web',
     stack: ['React', 'Tailwind', 'Vite'],
     description: 'Sitio web informativo para consultorio dental con presentación de servicios, galería del consultorio, sección de preguntas frecuentes y sistema de agendamiento de citas en línea.',
     challenge: 'La mayoría de consultorios dentales no tienen presencia digital. Los pacientes buscan en Google y no los encuentran — o encuentran a la competencia.',
@@ -342,7 +342,7 @@ const projects = [
   {
     id: 15,
     title: 'Tienda de Ropa — E-commerce MVP',
-    category: 'mvp',
+    category: 'web',
     stack: ['React', 'Tailwind', 'Vite'],
     description: 'E-commerce completo para tienda de ropa con catálogo por categorías, filtros por talla y color, fichas de producto detalladas, carrito de compras y proceso de checkout. Diseño moderno enfocado en conversión.',
     challenge: 'Las tiendas de ropa dependen de Instagram y WhatsApp para vender — sin tienda propia pierden ventas cada vez que el algoritmo cambia o la cuenta tiene problemas.',
@@ -396,7 +396,6 @@ const filters = [
   { id: 'all', label: 'Todos' },
   { id: 'web', label: 'Web' },
   { id: 'sistema', label: 'Sistemas' },
-  { id: 'mvp', label: 'MVPs' },
   { id: 'herramienta', label: 'Herramientas' },
   { id: 'en-desarrollo', label: 'En desarrollo 🔨' },
 ]
@@ -842,7 +841,7 @@ function ProjectCard({ p, onClick }) {
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-dm px-2 py-0.5 rounded-md capitalize"
             style={{ background: 'rgba(255,92,26,0.1)', color: 'var(--accent)' }}>
-            {p.category === 'en-desarrollo' ? 'En desarrollo' : p.category === 'mvp' ? 'MVP' : p.category}
+            {p.category === 'en-desarrollo' ? 'En desarrollo' : p.category}
           </span>
           {p.images.length > 0 && (
             <span className="text-xs font-dm" style={{ color: 'var(--text-muted)' }}>
