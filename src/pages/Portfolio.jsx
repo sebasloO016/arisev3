@@ -769,6 +769,9 @@ function VideoThumb({ src, className, style }) {
 /* ── Project card ── */
 function ProjectCard({ p, onClick }) {
   const hasImage = p.images && p.images.length > 0
+  const posterSrc = p.video && !p.video.includes('youtube')
+    ? p.video.replace('demo.mp4', 'poster.jpg')
+    : null
 
   return (
     <motion.div layout
@@ -779,11 +782,12 @@ function ProjectCard({ p, onClick }) {
       style={{ background: 'var(--bg-elevated)', border: p.featured ? `1px solid ${p.accent}30` : '1px solid rgba(255,255,255,0.07)' }}
       onClick={() => onClick(p)}>
 
-      {/* Thumbnail — real image if available, else mock visual */}
+      {/* Thumbnail */}
       <div className="h-40 relative overflow-hidden" style={{ background: p.color }}>
-        {p.video && !p.video.includes('youtube') ? (
-          <VideoThumb
-            src={p.video}
+        {posterSrc ? (
+          <img
+            src={posterSrc}
+            alt={p.title}
             className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : hasImage ? (
